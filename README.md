@@ -1,5 +1,7 @@
 # shopping-mall
 
+《实战Vue》的课后商城项目
+
 ## Project setup
 ```
 yarn install
