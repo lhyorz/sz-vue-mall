@@ -18,7 +18,7 @@
                 </div>
                 <div class="cart-price">¥ {{ productDictList[item.id].cost }}</div>
                 <div class="cart-count">
-                    <span class="cart-control-minus" @click="handleCount(index, -1)">-</span>
+                    <span class="cart-control-minus" @click="handleCount(index, -1)">-</span>   
                     {{ item.count }}
                     <span class="cart-control-add" @click="handleCount(index, 1)">+</span>
                 </div>
@@ -90,6 +90,8 @@ export default {
   },
   methods: {
       handleCount(index, count){
+          //  || 真前假后
+          //  && 真后假前
           if(count<0 && this.cartList[index].count === 1) return;
           this.$store.commit('editCartCount', {
               id: this.cartList[index].id,
