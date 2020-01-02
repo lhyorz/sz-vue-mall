@@ -1,8 +1,17 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import product_data from '../mall.js'
+import product_data from '../mall.js'   
+import VuexPersistence from 'vuex-persist'
 
 Vue.use(Vuex)
+
+// Vuex数据持久化
+const vuexPersisted = new VuexPersistence({
+    storage: window.localStorage,
+    reducer: state => ({
+        cartList: state.cartList
+    })
+});
 
 // 数组排重
 function getFilterArray (array) {
@@ -19,6 +28,7 @@ function getFilterArray (array) {
 }
 
 export default new Vuex.Store({
+    plugins: [vuexPersisted.plugin],
     state: {
         productList: [],
         cartList: []
@@ -68,7 +78,7 @@ export default new Vuex.Store({
         // 清空购物车
         emptyCart(state){
             state.cartList = []
-        }
+        },
     },
     actions: {
         // 请求商品列表
